@@ -1,0 +1,39 @@
+#include <Servo.h>
+
+Servo servo1;
+Servo servo2;
+Servo servo3;
+Servo servo4;
+
+void setup() {
+
+  servo1.attach(13);
+  servo2.attach(12);
+  servo3.attach(14);
+  servo4.attach(27);
+
+}
+
+void loop() {
+
+  // Move Forward Position
+  servo1.write(90);
+  servo2.write(90);
+  servo3.write(90);
+  servo4.write(90);
+
+  delay(2000);
+
+  // Pick Position
+  servo1.write(45);
+  servo2.write(120);
+  servo3.write(60);
+  servo4.write(30);
+
+  delay(2000);
+
+  // Release Position
+  servo4.write(90);
+
+  delay(2000);
+}
