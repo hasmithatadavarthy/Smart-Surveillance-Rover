@@ -1,0 +1,55 @@
+#include "esp_camera.h"
+#include <WiFi.h>
+
+#define IN1 13
+#define IN2 15
+#define IN3 14
+#define IN4 2
+
+const char* ssid = "ESP32-Robot";
+const char* password = "12345678";
+
+void setup() {
+  Serial.begin(115200);
+
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
+
+  WiFi.softAP(ssid, password);
+
+  Serial.println("WiFi Started");
+  Serial.println(WiFi.softAPIP());
+}
+
+void loop() {
+
+  // FORWARD
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+  delay(2000);
+
+  // STOP
+  stopRobot();
+  delay(1000);
+
+  // BACKWARD
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
+  delay(2000);
+
+  stopRobot();
+  delay(1000);
+}
+
+void stopRobot() {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, LOW);
+}
